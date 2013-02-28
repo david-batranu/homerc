@@ -1,0 +1,7 @@
+[user]
+	name = David Batranu
+	email = dbatranu@gmail.com
+[color]
+	ui = auto
+[http]
+	sslVerify = false
