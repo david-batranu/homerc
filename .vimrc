@@ -3,15 +3,17 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
-"colorscheme colorful
+"set background=dark
+set background=light
+colorscheme colorful
 "colorscheme beauty256
-"colorscheme tutticolori "1
-"colorscheme blackboard
-colorscheme rdark
+"colorscheme tutticolori
+""colorscheme blackboard
+"colorscheme rdark
 "colorscheme wombat
 "colorscheme espresso
-"set background=dark
 "colorscheme solarized
+"colorscheme zenburn
 set hls
 set nu
 set hid
@@ -34,7 +36,7 @@ set fileencoding=utf-8
 set clipboard=unnamedplus
 
 set nocompatible
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
 " powerline fix (probably for buffer stuff)
 set laststatus=2
@@ -42,6 +44,9 @@ set laststatus=2
 set t_Co=256
 
 nnoremap ; :
+nnoremap t :CommandT<CR>
+nnoremap T :CommandTBuffer<CR>
+nnoremap <C-]> :execute 'tj' expand('<cword>')<CR>zv
 
 set wildmenu
 set wildmode=list:longest,full
@@ -52,23 +57,27 @@ set nobackup
 set nowb
 set noswapfile
 
-"set guifont=Droid\ Sans\ Mono\ 10
-"set guifont=Monaco\ 11
+"set guifont=Droid\ Sans\ Mono\ 11
+set guifont=Monaco\ 10
 "set guifont=Inconsolata\ 12
 "set guifont=Anka/Coder\ Narrow\ 11
-"set guifont=Consolas\ 11
-"set guifont=Terminus\ 11
-"set guifont=Ubuntu\ Mono\ 10
-set guifont=Terminus\ 10
+"set guifont=Consolas\ 10
+"set guifont=Terminus\ 13
+"set guifont=Terminus\ 9
+"set guifont=Ubuntu\ Mono\ 12
+"set guifont=Terminus\ 10
 "set guifont=Menlo\ for\ Powerline\ 10
 "set guifont=Mutex\ 10
 "set guifont=Pointfree\ 10
+"set guifont=GohuFont\ 10
 
+
+set tags+=./tags;$HOME
 
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 au BufRead,BufNewFile *.json set ft=javascript syntax=javascript
 au BufRead,BufNewFile *.zcml set ft=xml syntax=xml
-au BufRead,BufNewFile *.pt set ft=xhtml syntax=xhtml
+au BufRead,BufNewFile *.pt,*.zpt set ft=xhtml syntax=xhtml
 au BufRead,BufNewFile *.vpy set ft=python syntax=python
 
 
@@ -78,7 +87,7 @@ map <F2> s<span lang="en" class="multilang">
 map <F3> s<span lang="fr" class="multilang">
 map <F4> s<span lang="es" class="multilang">
 "map <F5> :set filetype=htmldjango<CR>
-map <F6> o+
+map <F6> oimport pdb; pdb.set_trace()
 map <F8> :Bclose<CR>
 map <F9> :NERDTreeToggle<CR>
 map <F10> \be
@@ -87,10 +96,13 @@ map <F10> \be
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType rst setlocal ts=2 sts=2 sw=2
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml setlocal ts=2 sts=2 sw=2
+
 
 
 " save registers
@@ -107,24 +119,6 @@ set viminfo=%,'50,\"100,n~/.viminfo
 noremap <f1> :bprev<CR>
 noremap <f2> :bnext<CR>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Parenthesis/bracket expanding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $q <esc>`>a'<esc>`<i'<esc>
-vnoremap $e <esc>`>a"<esc>`<i"<esc>
-
-" Map auto complete of (, ", ', [
-inoremap $1 ()<esc>i
-inoremap $2 []<esc>i
-inoremap $3 {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-inoremap $q ''<esc>i
-inoremap $e ""<esc>i
-inoremap $t <><esc>i
 
 " Strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
@@ -153,3 +147,5 @@ for p in sys.path:
 if os.path.isdir('parts/omelette'):
     vim.command(r"set path+=%s" % 'parts/omelette')
 EOF
+
+command! -nargs=? Filter let @a='' | execute 'g/<args>/y A' | new | setlocal bt=nofile | put! a
