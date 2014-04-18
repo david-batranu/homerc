@@ -1,19 +1,49 @@
-call pathogen#infect()
+"call pathogen#infect()
+
+" start Vundle init
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/AutoComplPop'
+Bundle 'Yggdroot/indentLine'
+Bundle 'groenewege/vim-less'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'amiorin/vim-project'
+Bundle 'zeis/vim-kolor'
+"Bundle 'Valloric/YouCompleteMe'
+
+" end Vundle init
+
+
+set completeopt=menu,menuone
+
+
 filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
-"set background=dark
-set background=light
-colorscheme colorful
+set background=dark
+"set background=light
+"colorscheme colorful
+"colorscheme kolor
 "colorscheme beauty256
 "colorscheme tutticolori
-""colorscheme blackboard
+"colorscheme blackboard
 "colorscheme rdark
 "colorscheme wombat
 "colorscheme espresso
 "colorscheme solarized
 "colorscheme zenburn
+"colorscheme github
+"colorscheme slate
+"colorscheme codeschool
+colorscheme grb256
 set hls
 set nu
 set hid
@@ -36,7 +66,8 @@ set fileencoding=utf-8
 set clipboard=unnamedplus
 
 set nocompatible
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
+let g:indentLine_char = '┊'
 
 " powerline fix (probably for buffer stuff)
 set laststatus=2
@@ -44,8 +75,8 @@ set laststatus=2
 set t_Co=256
 
 nnoremap ; :
-nnoremap t :CommandT<CR>
-nnoremap T :CommandTBuffer<CR>
+nnoremap t :CtrlP $pwd<CR>
+nnoremap T :CtrlPBuffer<CR>
 nnoremap <C-]> :execute 'tj' expand('<cword>')<CR>zv
 
 set wildmenu
@@ -58,11 +89,14 @@ set nowb
 set noswapfile
 
 "set guifont=Droid\ Sans\ Mono\ 11
-set guifont=Monaco\ 10
+"set guifont=Monaco\ 10
+set guifont=Consolas\ 14
+set guifont=M+\ 1mn\ 12,light\ 12
 "set guifont=Inconsolata\ 12
-"set guifont=Anka/Coder\ Narrow\ 11
+"set guifont=Anka/Coder\ Narrow\ 10
+"set guifont=Anka/Coder\ 10
 "set guifont=Consolas\ 10
-"set guifont=Terminus\ 13
+"set guifont=Terminus\ 11
 "set guifont=Terminus\ 9
 "set guifont=Ubuntu\ Mono\ 12
 "set guifont=Terminus\ 10
@@ -87,7 +121,8 @@ map <F2> s<span lang="en" class="multilang">
 map <F3> s<span lang="fr" class="multilang">
 map <F4> s<span lang="es" class="multilang">
 "map <F5> :set filetype=htmldjango<CR>
-map <F6> oimport pdb; pdb.set_trace()
+map <F6> oimport pdb; pdb.set_trace()<ESC>
+map <s-F6> oimport rpdb2; rpdb2.start_embedded_debugger("000123")<ESC>
 map <F8> :Bclose<CR>
 map <F9> :NERDTreeToggle<CR>
 map <F10> \be

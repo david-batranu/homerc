@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/david/.ssh'
-let g:netrw_dirhist_2='/home/david'
-let g:netrw_dirhist_3='/stuff/dev/PondsSurvey'
-let g:netrw_dirhist_4='/stuff/dev/PondsSurvey/ponds_survey'
-let g:netrw_dirhist_5='/warp10/dev/enisa/buildouts/exercises/src/enisa.ciras/enisa/ciras/profiles/default'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/warp10/dev/copernicus/buildout'
+let g:netrw_dirhist_2='/stuff/dev/collective/plone.recipe.pound'
+let g:netrw_dirhist_3='/home/david/.subversion/auth/svn.username'
+let g:netrw_dirhist_4='/warp10/dev/copernicus/buildout/parts/poundbuild/sbin'
+let g:netrw_dirhist_5='/warp10/dev/eea/buildout-alec/eggs/plone.app.upgrade-1.3.3-py2.6.egg/plone/app/upgrade/v43'
+let g:netrw_dirhist_6='/warp10/dev/eea/buildout-alec/src/plone.app.upgrade'
